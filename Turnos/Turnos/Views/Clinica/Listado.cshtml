@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Turnos.Models.turno>
+ 
+
+@{
+    ViewBag.Title = "Listado de los turnos ";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div>
+            <h1>
+                Listado de turnos 
+            </h1>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <table class="table table-bordered table-striped ">
+            <thead>
+                <tr class="bg-success">
+                    <th class="text-center">
+                        ID
+                    </th>
+                    <th class="text-center">
+                        Nombre
+                    </th>
+                    <th class="text-center">
+                        Edad
+                    </th>
+                    <th class="text-center">
+                        Fecha
+                    </th>
+                    <th class="text-center">
+                        Descripcion
+                    </th>
+                    <th class="text-center">
+                        Acciones
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var turno in Model)
+                {
+                <tr class="text-center">
+                    <td>
+                        @turno.id
+                    </td>
+                    <td>
+                        @turno.nombre
+                    </td>
+                    <td>
+                        @turno.edad
+
+                    </td>
+                    <td>
+                        @turno.fecha
+                    </td>
+                    <td>
+                        @turno.Descripcion
+                    </td>
+
+                    <td>
+
+
+                        <a href="@Url.Action("DatosTurno", "Clinica", new { id = turno.id })" class="btn btn-warning"> Mostrar datos</a>
+                        <a href="@Url.Action("Eliminar", "Clinica", new {id = turno.id})" class="btn btn-danger"> Eliminar</a>
+                    </td>
+
+
+
+                </tr>
+                }
+
+
+
+
+
+
+                </tbody>
+
+            </table>
+
+
+    </div>
+</div>
+

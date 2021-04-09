@@ -1,0 +1,107 @@
+﻿@model Turnos.Models.turno
+@{
+    ViewBag.Title = "AltaPedido";
+    List<SelectListItem> ItemsP = (List<SelectListItem>)ViewBag.item;
+
+
+
+
+
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div>
+            <h1>Alta de un turno </h1>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm())
+
+
+
+{
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-6 control-label">Nombre del paciente: </label>
+                    <div class="col-sm-6">
+
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @id = "txtNombre" } })
+                        @Html.ValidationMessageFor(model => model.nombre, null, new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-6 control-label">Edad del paciente: </label>
+                    <div class="col-sm-6">
+                        @Html.EditorFor(model => model.edad, new { htmlAttributes = new { @class = "form-control", @id = "txtEdad" , @type = "number" } })
+                        @Html.ValidationMessageFor(model => model.edad, null, new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-6 control-label">Fecha del turno: </label>
+                    <div class="col-sm-6">
+                        @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control", @id = "txtFecha" } })
+                        @Html.ValidationMessageFor(model => model.fecha, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-6 control-label"> Prestacion</label>
+                    <div class="col-sm-6">
+                        @Html.DropDownList("presta", ItemsP, "Seleccione prestacion", htmlAttributes: new { @class = "form-control", @id = "txtPrestacion" })
+                       
+                    </div>
+                </div>
+
+
+                <div class="form-group text-right">
+                    <div class="col-xs-12">
+                        <input type="submit" class="btn btn-success" value="Agregar" onclick="return validar();" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+<script>
+    function validar() {
+        let nombre = document.getElementById("txtNombre");
+        let edad = document.getElementById("txtEdad");
+        let fecha = document.getElementById("txtFecha");
+        let prestacion = document.getElementById("txtPrestacion");
+
+        if (nombre.value === "") {
+            alert("Ingrese nombre valido");
+            return false;
+        }
+        if (edad.value === "") {
+            alert("Ingrese caracteres numericos");
+            return false;
+
+        }
+        //if (isNaN(edad)) {
+        //    alert("Ingrese edad correcta");
+        //    return false;
+        //}
+        if (fecha.value === "") {
+            alert("Ingrese fecha valida");
+            return false;
+        }
+        if (prestacion.value === "") {
+            alert("Seleccione una prestacion")
+            return false
+        }
+        return alert("Usuario cargado");
+    }
+</script>
+
+
+

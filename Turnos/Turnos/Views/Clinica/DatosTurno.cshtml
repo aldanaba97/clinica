@@ -1,0 +1,67 @@
+﻿@model Turnos.Models.turno
+@{
+
+    ViewBag.Title = "Datos del turno";
+    List<SelectListItem> ItemsCombo = (List<SelectListItem>)ViewBag.items;
+}
+
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div>
+            <h1>Datos del turno @ViewBag.nombre</h1>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm())
+
+{
+    @Html.HiddenFor(Model => Model.id)
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-6 control-label">Nombre: </label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.nombre, htmlAttributes: new { @class = "form control", @id = "txtNombre" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-6 control-label">Edad del paciente: </label>
+                    <div class="col-sm-6">
+                        @Html.EditorFor(model => model.edad, new { htmlAttributes = new { @class = "form-control", @id = "txtEdad" } })
+                        @Html.ValidationMessageFor(model => model.edad, null, new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-6 control-label">Fecha del turno: </label>
+                    <div class="col-sm-6">
+                        @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control", @id = "txtFecha" } })
+                        @Html.ValidationMessageFor(model => model.fecha, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-6 control-label"> Prestacion</label>
+                    <div class="col-sm-6">
+                        @Html.DropDownList("presta", ItemsCombo, "Seleccione prestacion", htmlAttributes: new { @class = "form-control", @id = "txtPrestacion" })
+
+                    </div>
+                </div>
+
+                <div class="form-group text-right">
+                    <div class="col-xs-12">
+                        <button class="btn btn-primary" type="submit" onclick="validar()">
+                            Actualizar datos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
